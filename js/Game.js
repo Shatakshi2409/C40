@@ -44,11 +44,12 @@ class Game {
     form.hide();
     
     Player.getPlayerInfo();
+    player.getCarsAtEnd();
     
     if(allPlayers !== undefined){
       background(rgb(198,135,103));
       image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
-      
+      text("leaderboard"+player.rank,100,50);
       //var display_position = 100;
       
       //index of the array
@@ -91,14 +92,19 @@ class Game {
       player.update();
     }
 
-    if(player.distance > 3860){
+    if(player.distance > 4200){
       gameState = 2;
+      player.rank++;
+      Player.updateCarsAtEnd(player.rank);
     }
    
     drawSprites();
+    //text("leaderboard"+player.rank,100,50);
   }
+
 
   end(){
     console.log("Game Ended");
+    console.log(player.rank);
   }
 }
